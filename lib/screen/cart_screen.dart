@@ -14,8 +14,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-
-  CartController cartController = Get.put(CartController());
+  CartController cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {

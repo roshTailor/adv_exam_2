@@ -13,8 +13,9 @@ class CouponPage extends StatefulWidget {
 }
 
 class _CouponPageState extends State<CouponPage> {
-  CartController cartController = Get.put(CartController());
-
+  CartController cartController = Get.find<CartController>();
+  //CartController cartController = Get.put(CartController());
+  //CartController cartController = Get.lazyPut(() => cartController());
   Future? getData;
 
   @override
