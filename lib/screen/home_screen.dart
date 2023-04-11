@@ -52,7 +52,6 @@ class _HomePageState extends State<HomePage> {
                       subtitle: Text("Rs.${data[i].price}"),
                       onTap: () {
                         Get.toNamed("productPage", arguments: data[i]);
-                        //Get.to(Cart(index: i,));
                       },
                     ),
                   ),

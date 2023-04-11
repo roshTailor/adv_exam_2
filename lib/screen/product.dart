@@ -29,13 +29,7 @@ class _ProductPageState extends State<ProductPage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(CupertinoIcons.arrow_left),
-        ),
+
         title: const Text(
           "Order",
         ),
@@ -92,10 +86,7 @@ class _ProductPageState extends State<ProductPage> {
                       cartController.addProduct(productDB: data);
                       Get.offNamed("/cart_page");
                     },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.orange),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)))
-                    ),
+
                     child: const Text("+ Add to Cart",style: TextStyle(fontSize: 18,color: Colors.white),),
                   ),
                 ],

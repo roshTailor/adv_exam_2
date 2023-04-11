@@ -27,9 +27,7 @@ class _CouponPageState extends State<CouponPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Apply coupon"),
-        centerTitle: true,
-        backgroundColor: Colors.blueGrey,
+        title: const Text("Apply coupon"),
       ),
       body: FutureBuilder(
         future: getData,
@@ -46,32 +44,33 @@ class _CouponPageState extends State<CouponPage> {
             return ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, i) => Card(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         data[i].name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "₹ ${data[i].price}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   subtitle: Text(
                     "We display shipping speeds and charges based on the items in your cart and the delivery address. ${data[i].quantity} ",
-                    style: TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                   ),
                   trailing: OutlinedButton(
                       onPressed: ()async{
+                        print(i);
                         if (data[i].quantity > 0) {
                           CouponDBHelper.couponDBHelper
-                              .updateRecord(id: i, quantity: data[i].quantity);
+                              .updateRecord(id: i+1, quantity: data[i].quantity);
                           cartController.addDiscount(data: data[i].price,text: data[i].name);
                           await getData;
                           // Global.snackBar(

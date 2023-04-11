@@ -66,10 +66,8 @@ class CouponDBHelper
 
   updateRecord({required int id,required int quantity}) async {
     await initDB();
-
     int? a = await db?.rawUpdate(
         "Update $tableName SET $colQuantity= ? WHERE $colId = ?", [--quantity, id]);
-
     print(a);
   }
 }

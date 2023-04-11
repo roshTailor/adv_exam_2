@@ -22,16 +22,9 @@ class _CartPageState extends State<CartPage> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
         title: Text(
           "Cart",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
         ),
-        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -41,18 +34,10 @@ class _CartPageState extends State<CartPage> {
                   () => ListView.builder(
                 itemCount: cartController.addedProduct.length,
                 itemBuilder: (context, i) {
+                  print("${cartController.addedProduct[i].name}");
                   return Column(
                     children: [
                       ListTile(
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image(
-                            image: MemoryImage(
-                                cartController.addedProduct[i].image),
-                            fit: BoxFit.cover,
-                            width: size.width * 0.18,
-                          ),
-                        ),
                         title: Text("${cartController.addedProduct[i].name}"),
                         subtitle: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -167,14 +152,12 @@ class _CartPageState extends State<CartPage> {
                     Spacer(),
                     IconButton(onPressed: (){
                       cartController.removeDiscount(data: 0,text: "Promo Code");
-                    }, icon: Icon(Icons.delete,color: Colors.red,)),
+                    }, icon: Icon(Icons.delete,color: Colors.black,)),
                     ElevatedButton(
                       onPressed: () {
                         Get.toNamed("/coupon_page");
                       },
                       style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty.all(Colors.black),
                         shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18),
@@ -184,7 +167,7 @@ class _CartPageState extends State<CartPage> {
                       child: Text(
                         "Apply",
                         style:
-                        TextStyle(fontSize: 14, color: Colors.amberAccent),
+                        TextStyle(fontSize: 14,),
                       ),
                     ),
                   ],
@@ -193,7 +176,7 @@ class _CartPageState extends State<CartPage> {
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Padding(
               padding: const EdgeInsets.all(12),
               child: Column(
@@ -221,9 +204,6 @@ class _CartPageState extends State<CartPage> {
                       ),
                     ],
                   ),
-                  const Spacer(
-                    flex: 1,
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -239,14 +219,10 @@ class _CartPageState extends State<CartPage> {
                       Text(
                         "₹ 29",
                         style: TextStyle(
-
                             fontWeight: FontWeight.w500,
                             fontSize: 16, color: Colors.grey),
                       ),
                     ],
-                  ),
-                  const Spacer(
-                    flex: 1,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -262,9 +238,8 @@ class _CartPageState extends State<CartPage> {
                       Obx(
                             ()=> Text(
                           "₹ ${cartController.discount}",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
-
                             fontWeight: FontWeight.w500,
                             color: Colors.green,
                           ),
@@ -276,13 +251,12 @@ class _CartPageState extends State<CartPage> {
                     thickness: 2,
                     color: Colors.grey,
                   ),
-                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Obx(()=> Text(
                         "Total (Qty : ${cartController.totalQuantity})",
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16,
                             color: Colors.black,
                             fontWeight: FontWeight.bold),
@@ -290,7 +264,7 @@ class _CartPageState extends State<CartPage> {
                       ),
                       Obx(()=> Text(
                         "₹ ${cartController.totalPrice + 29 - cartController.discount.value}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16,
                             color: Colors.black,
                             fontWeight: FontWeight.bold),
@@ -302,23 +276,13 @@ class _CartPageState extends State<CartPage> {
               ),
             ),
           ),
-          Expanded(
-              flex: 1,
-              child: SizedBox(
-                width: size.width,
-                child: Padding(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.orange),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)))
-                    ),
-                    child: Text("Continue Pay",style: TextStyle(fontSize: 18,color: Colors.white),),
-                  ),
-                ),
-              )),
+          SizedBox(
+            width: size.width/1.1,
+            child: ElevatedButton(
+              onPressed: () {},
+              child: const Text("Continue Pay",style: TextStyle(fontSize: 18,color: Colors.white),),
+            ),
+          ),
         ],
       ),
     );
